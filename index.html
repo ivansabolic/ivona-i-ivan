@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ivona i Ivan · 9. travnja 2027.</title>
+  <meta name="description" content="Ivona i Ivan vas pozivaju na svoje vjenčanje. Petak, 9. travnja 2027. u 18:00, Corberon Woods, Mačkovec.">
+  <meta property="og:title" content="Ivona i Ivan · 9. travnja 2027.">
+  <meta property="og:description" content="Pozivaju Vas na svoje vjenčanje. Petak, 9. travnja 2027., Corberon Woods.">
+  <meta property="og:image" content="assets/hero-poster.jpg">
+  <meta name="theme-color" content="#f6f2ea">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20">
+</head>
+<body>
+
+<!-- ───────────── Navigacija ───────────── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">I <span>&amp;</span> I</a>
+  <nav class="nav__links">
+    <a href="#kada">Kada i gdje</a>
+    <a href="#detalji">Detalji</a>
+    <a href="#rsvp" class="nav__cta">Potvrdi dolazak</a>
+  </nav>
+</header>
+
+<!-- ───────────── Hero ───────────── -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+      <source src="assets/hero.webm" type="video/webm">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero__shade"></div>
+  </div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal">Pozivaju Vas na svoje vjenčanje</p>
+    <h1 class="hero__title reveal">
+      <span>Ivona</span>
+      <span class="hero__amp"><i>i</i></span>
+      <span>Ivan</span>
+    </h1>
+    <p class="hero__date reveal">Petak, 9. travnja 2027.</p>
+  </div>
+
+  <a class="hero__scroll" href="#uvod" aria-label="Nastavi">
+    <span></span>
+  </a>
+</section>
+
+<!-- ───────────── Uvod ───────────── -->
+<section class="section section--intro" id="uvod">
+  <div class="wrap wrap--narrow">
+    <blockquote class="lede reveal">
+      <p>All we have to decide is what to do with the time that is given us.</p>
+      <cite>J. R. R. Tolkien</cite>
+    </blockquote>
+  </div>
+
+  <!-- "deveti travnja dvije tisuće dvadeset sedme" in Tengwar (approximate, general-use mode) -->
+  <svg class="inscription reveal" viewBox="0 0 640 150" aria-hidden="true">
+    <defs>
+      <path id="arc" d="M 20,145 A 420,420 0 0 1 620,145" fill="none"/>
+      <linearGradient id="inkgold" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#a8832f"/>
+        <stop offset=".35" stop-color="#e3c777"/>
+        <stop offset=".6" stop-color="#b48d36"/>
+        <stop offset="1" stop-color="#e8d08a"/>
+      </linearGradient>
+    </defs>
+    <text textLength="580" lengthAdjust="spacing">
+      <textPath href="#arc" startOffset="50%" text-anchor="middle">qxR1T`% 17xE5h`# qxhT`$ 18T3U`$ qxqE8R1R 8qRt`$</textPath>
+    </text>
+  </svg>
+
+  <div class="datecard reveal">
+    <div class="datecard__side">Petak</div>
+    <div class="datecard__day">9</div>
+    <div class="datecard__side">Travnja</div>
+    <div class="datecard__year">2027</div>
+  </div>
+</section>
+
+<!-- ───────────── Kada i gdje ───────────── -->
+<section class="section section--venue" id="kada">
+  <div class="wrap">
+    <div class="split">
+      <div class="split__text">
+        <p class="label reveal">Kada i gdje</p>
+        <h2 class="reveal">Corberon Woods</h2>
+        <p class="reveal">
+          Vjenčanje će se održati u crkvi sv. Barbare u Gornjem Vrapču u 16 sati.
+          Slavlje nastavljamo u Corberon Woodsu, zelenoj oazi usred stoljetne
+          hrastove šume, dvadesetak minuta vožnje od zapadnog dijela Zagreba.
+        </p>
+
+        <dl class="facts reveal">
+          <div>
+            <dt>Vjenčanje</dt>
+            <dd>16:00<br>Crkva sv. Barbare, Gornje Vrapče</dd>
+          </div>
+          <div>
+            <dt>Proslava</dt>
+            <dd>18:00<br>Wedding Resort Corberon<br>Mačkovec, 10291 Prigorje Brdovečko</dd>
+          </div>
+        </dl>
+
+        <div class="links reveal">
+          <p class="links__title">Upute za dolazak</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Crkva+sv.+Barbare,+Gornje+Vrap%C4%8De,+Zagreb" target="_blank" rel="noopener">
+            Crkva sv. Barbare, Gornje Vrapče <span aria-hidden="true">↗</span>
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Wedding+Resort+Corberon,+Ma%C4%8Dkovec,+Prigorje+Brdove%C4%8Dko" target="_blank" rel="noopener">
+            Corberon Woods, Mačkovec <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <figure class="split__media photo reveal">
+        <picture>
+          <source srcset="assets/mi.webp" type="image/webp">
+          <img src="assets/mi.jpg" alt="Ivona i Ivan na stijeni, s pogledom na dolinu" width="1152" height="1200" loading="lazy">
+        </picture>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Detalji ───────────── -->
+<section class="section section--details" id="detalji">
+  <div class="wrap">
+    <p class="label reveal">Detalji</p>
+    <h2 class="reveal">Sve što trebate znati</h2>
+
+    <div class="details">
+      <article class="detail reveal">
+        <h3>Na otvorenom</h3>
+        <p>
+          Proslava je u šatoru okruženom šumom. Travanjske večeri znaju biti
+          svježe, pa preporučujemo da ponesete nešto lagano za ogrnuti.
+        </p>
+      </article>
+
+      <article class="detail reveal">
+        <h3>Dolazak</h3>
+        <p>
+          Imanje je udaljeno više od kilometra od najbližeg naselja, u miru
+          šume. Do njega se najlakše stiže automobilom. Upute za dolazak
+          nalaze se iznad, uz kartu.
+        </p>
+      </article>
+
+      <article class="detail reveal">
+        <h3>Potvrda dolaska</h3>
+        <p>
+          Molimo vas da nam dolazak potvrdite najkasnije do
+          <strong>19. ožujka 2027.</strong> putem obrasca ispod ili nam se
+          jednostavno javite.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── RSVP ───────────── -->
+<section class="section section--rsvp" id="rsvp">
+  <div class="wrap wrap--narrow">
+    <p class="label label--light reveal">Potvrda dolaska</p>
+    <h2 class="reveal">Hoćete li slaviti s nama?</h2>
+    <p class="rsvp__note reveal">Molimo odgovor do 19. ožujka 2027.</p>
+
+    <form class="rsvp reveal" id="rsvpForm" novalidate>
+      <div class="field">
+        <label for="ime">Ime i prezime</label>
+        <input type="text" id="ime" name="ime" autocomplete="name" required>
+      </div>
+
+      <fieldset class="field">
+        <legend>Dolazak</legend>
+        <div class="choices">
+          <label class="choice">
+            <input type="radio" name="dolazak" value="da" required>
+            <span>Da, dolazimo</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="dolazak" value="ne">
+            <span>Nažalost ne</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field field--half" data-if-attending>
+        <label for="osobe">Broj osoba</label>
+        <input type="number" id="osobe" name="osobe" min="1" max="10" value="1" inputmode="numeric">
+      </div>
+
+      <div class="field" data-if-attending>
+        <label for="prehrana">Posebna prehrana <small>(neobavezno)</small></label>
+        <input type="text" id="prehrana" name="prehrana" placeholder="npr. vegetarijanska, alergije…">
+      </div>
+
+      <div class="field">
+        <label for="poruka">Poruka <small>(neobavezno)</small></label>
+        <textarea id="poruka" name="poruka" rows="3"></textarea>
+      </div>
+
+      <button class="button button--solid" type="submit">Pošalji potvrdu</button>
+      <p class="rsvp__status" id="rsvpStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ───────────── Footer ───────────── -->
+<footer class="footer">
+  <div class="wrap wrap--narrow">
+    <p class="reveal">Za sva pitanja slobodno nam se javite.</p>
+    <p class="footer__contacts reveal">
+      <a href="tel:+385000000000">Ivona · +385 00 000 0000</a>
+      <a href="tel:+385000000000">Ivan · +385 00 000 0000</a>
+    </p>
+    <p class="footer__closing reveal">Veselimo se vašem dolasku!</p>
+    <p class="footer__signature reveal">Ivona i Ivan</p>
+  </div>
+</footer>
+
+<script src="script.js?v=20" defer></script>
+</body>
+</html>

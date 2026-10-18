@@ -1,0 +1,5 @@
+# Source media (already converted into assets/)
+*.mov
+WhatsApp Image *.jpeg
+# Font download staging
+assets/fonts/_dl/
