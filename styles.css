@@ -5,6 +5,11 @@
   font-display: swap;
 }
 @font-face {
+  font-family: "Aniron";
+  src: url("assets/fonts/aniron.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
   font-family: "Tengwar Annatar";
   src: url("assets/fonts/tengwar-annatar-italic.ttf") format("truetype");
   font-style: italic; font-display: swap;
@@ -28,6 +33,7 @@
   --script: "Pinyon Script", "Snell Roundhand", cursive;
   --lotr: "Ringbearer", "Uncial Antiqua", "Cormorant Garamond", serif;
   --tengwar: "Tengwar Annatar", serif;
+  --hobbit: "Aniron", "Uncial Antiqua", "Cormorant Garamond", serif;
 
   --wrap: 1120px;
   --gutter: clamp(20px, 5vw, 64px);
@@ -83,14 +89,23 @@ p:last-child { margin-bottom: 0; }
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 var(--line);
 }
-.nav__brand { font-size: 1.15rem; letter-spacing: 0.32em; text-transform: uppercase; }
-.nav__brand span { font-style: italic; text-transform: none; letter-spacing: 0; margin: 0 .1em; }
-.nav__links { display: flex; gap: clamp(16px, 3vw, 40px); align-items: center; font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.nav__brand { font-family: var(--hobbit); font-size: 1.05rem; letter-spacing: 0.06em; }
+.nav__brand span { font-family: var(--serif); font-style: italic; font-size: 1.1em; margin: 0 .15em; }
+.nav__links { display: flex; gap: clamp(16px, 3vw, 40px); align-items: center; font-family: var(--hobbit); font-size: 0.95rem; letter-spacing: 0.06em; text-transform: none; }
 .nav__links a { opacity: .85; transition: opacity .3s; }
 .nav__links a:hover { opacity: 1; }
-.nav__cta { padding: .55em 1.1em; border: 1px solid currentColor; border-radius: 999px; opacity: 1 !important; }
+.nav__cta { padding: .5em 1.1em .45em; border: 1px solid currentColor; border-radius: 999px; opacity: 1 !important; }
+.nav__brand, .nav__cta { white-space: nowrap; }
 @media (max-width: 640px) {
+  .nav { padding: 12px var(--gutter); gap: 12px; }
+  .nav__brand { font-size: .8rem; letter-spacing: .02em; }
+  .nav__links { font-size: .72rem; }
+  .nav__cta { padding: .45em .85em .4em; }
   .nav__links a:not(.nav__cta) { display: none; }
+}
+@media (max-width: 380px) {
+  .nav__brand { font-size: .72rem; }
+  .nav__links { font-size: .66rem; }
 }
 
 /* ───────────── Hero ───────────── */
@@ -132,14 +147,16 @@ p:last-child { margin-bottom: 0; }
   transition-delay: .1s;
 }
 .hero__title {
-  display: flex; flex-direction: column; align-items: center; gap: .05em;
-  font-size: clamp(3.2rem, 9vw + 10px, 8rem);
-  line-height: .95; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300;
+  display: flex; flex-direction: column; align-items: center; gap: .15em;
+  font-family: var(--hobbit);
+  font-size: clamp(2.6rem, 7vw + 8px, 6.4rem);
+  line-height: 1; letter-spacing: 0.04em; text-transform: none; font-weight: 400;
   transition-delay: .3s;
 }
 .hero__amp {
   display: flex; align-items: center; gap: .6em;
-  font-size: .32em; letter-spacing: 0; text-transform: none; font-weight: 400;
+  font-family: var(--serif);
+  font-size: .36em; letter-spacing: 0; text-transform: none; font-weight: 400;
 }
 .hero__amp::before, .hero__amp::after { content: ""; width: 2.2em; height: 1px; background: currentColor; opacity: .7; }
 .hero__amp i { font-family: var(--script); font-style: normal; font-size: 1.6em; line-height: 1; }
@@ -151,15 +168,18 @@ p:last-child { margin-bottom: 0; }
 }
 .hero__scroll {
   position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
-  z-index: 2; width: 26px; height: 44px;
-  border: 1px solid rgba(255,255,255,.7); border-radius: 13px;
+  z-index: 2; width: 56px; height: 56px;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 130, .55)) drop-shadow(0 4px 10px rgba(0,0,0,.35));
+  animation: ringdrift 2.6s infinite var(--ease);
 }
-.hero__scroll span {
-  position: absolute; left: 50%; top: 8px; width: 3px; height: 8px; margin-left: -1.5px;
-  border-radius: 2px; background: #fff;
-  animation: scrollhint 1.8s infinite var(--ease);
+.hero__scroll svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.hero__ringtext { font-family: var(--tengwar); font-style: italic; font-size: 4.4px; fill: #6b4e10; opacity: .85; }
+@keyframes ringdrift {
+  0%   { transform: translate(-50%, 0); opacity: 1; }
+  60%  { transform: translate(-50%, 12px); opacity: 1; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
 }
-@keyframes scrollhint { 0% { transform: translateY(0); opacity: 1 } 70% { transform: translateY(16px); opacity: 0 } 100% { opacity: 0 } }
+@media (prefers-reduced-motion: reduce) { .hero__scroll { animation: none; } }
 
 /* ───────────── Sections ───────────── */
 .section { padding: clamp(96px, 14vw, 180px) 0; }
@@ -176,8 +196,8 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 
 .lede {
   margin: 0;
-  font-family: var(--lotr);
-  font-size: clamp(1.05rem, 1vw + 9px, 1.45rem);
+  font-family: var(--hobbit);
+  font-size: clamp(1rem, .9vw + 8px, 1.3rem);
   line-height: 1.7; letter-spacing: .02em; font-weight: 400; text-align: center; font-style: normal;
   text-wrap: balance;
 }
@@ -186,7 +206,7 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 .lede p::after { content: "\201D"; }
 .lede cite {
   display: block; margin-top: 1em; text-align: right;
-  font-family: var(--lotr); font-style: normal; font-size: .6rem; letter-spacing: .14em;
+  font-family: var(--hobbit); font-style: normal; font-size: .6rem; letter-spacing: .14em;
   color: var(--ink-mute);
 }
 .lede cite::before { content: "\2014\00a0"; }
@@ -233,22 +253,182 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 /* Venue */
 .section--venue { background: var(--paper-deep); }
 .split { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(40px, 6vw, 96px); align-items: center; }
-.section--venue h2 { font-size: clamp(2.4rem, 3.6vw + 8px, 3.9rem); }
-.photo {
-  margin: 0; aspect-ratio: 24 / 25; overflow: hidden;
-  border-radius: 999px 999px 18px 18px;
-  box-shadow: 0 30px 60px -30px rgba(35,42,56,.35);
+.section--venue h2, .section--details h2, .section--rsvp h2 {
+  font-family: var(--hobbit);
+  font-size: clamp(1.8rem, 2.4vw + 6px, 3rem);
+  letter-spacing: .02em; line-height: 1.2;
 }
-.photo img { width: 100%; height: 100%; object-fit: cover; }
+/* ───────────── Doors of Durin (ithildin line art; leaves swing, stone dissolves, full photo fills the arch) ───────────── */
+/* Line art sits at a quiet glow (--glow .35) and lights fully on hover/open.
+   The inscription letters are drawn fully lit under an SVG luminance mask (dSweep-F in the markup)
+   that dims them to ~36% while a soft band of light sweeps left → right → left across them. */
+@property --glow { syntax: '<number>'; inherits: true; initial-value: .35; }
+.doors {
+  --doors-ease: cubic-bezier(.62, .04, .22, 1);
+  --glow: .35;
+  width: 100%; margin: 0; cursor: pointer; outline: none;   /* explicit width: auto margins must not shrink-wrap the caption */
+  -webkit-tap-highlight-color: transparent;
+}
+.doors__arch {
+  position: relative; aspect-ratio: 24 / 25; overflow: hidden; isolation: isolate;
+  border-radius: 999px 999px 18px 18px;
+  background: transparent;
+  perspective: 1500px; perspective-origin: 50% 55%;
+}
+.doors:focus-visible .doors__arch { box-shadow: 0 0 0 3px #f6f2ea, 0 0 0 5px #c9a24d; }
+
+/* the photo (24:25, same ratio as the arch) fills the whole arch once the doors open */
+.doors__photo {
+  position: absolute; inset: 0; margin: 0;
+  opacity: 0; transform: scale(1.05); filter: brightness(.6) saturate(.85);
+  transition: opacity .9s ease .6s, transform 1.9s var(--doors-ease) .4s, filter 1.6s ease .4s;
+}
+.doors__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.doors__leaf, .doors__frame { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* leaves swing inward from hinges at the pillars (door edge x = 96 / 384 of 480), then dissolve */
+.doors__leaf {
+  backface-visibility: hidden; will-change: transform, opacity;
+  transition: transform 1.6s var(--doors-ease), opacity .45s ease;
+}
+.doors__leaf--left  { transform-origin: 20% 50%; }
+.doors__leaf--right { transform-origin: 80% 50%; }
+
+/* the stone frame flares, then fades away so the full photo fills the arch */
+.doors__frame { transition: opacity 1s ease .1s, filter .5s ease .2s; will-change: opacity, filter; }
+.doors .sweep-base { transition: fill .7s ease; }
+.doors.is-open { --glow: 1; }
+.doors.is-open .sweep-base { fill: #fff; }
+
+/* open state: by tap/click/keyboard (.is-open) … */
+.doors.is-open .doors__leaf {
+  opacity: 0;
+  transition: transform 1.6s var(--doors-ease) .5s, opacity .65s ease 1.4s;
+}
+.doors.is-open .doors__leaf--left  { transform: rotateY(82deg); }
+.doors.is-open .doors__leaf--right { transform: rotateY(-82deg); }
+.doors.is-open .doors__frame { opacity: 0; filter: brightness(1.45); transition: opacity 1.2s ease .8s, filter .4s ease .4s; }
+.doors.is-open .doors__photo { opacity: 1; transform: none; filter: none; }
+/* … and by hover / keyboard focus, only on devices that really hover with a fine pointer (no sticky :hover on touch;
+   a hover-capable stylus phone still counts as touch) */
+@media (hover: hover) and (pointer: fine) {
+  .doors:hover, .doors:focus-visible { --glow: 1; }
+  .doors:hover .sweep-base, .doors:focus-visible .sweep-base { fill: #fff; }
+  .doors:hover .doors__leaf {
+    opacity: 0;
+    transition: transform 1.6s var(--doors-ease) .5s, opacity .65s ease 1.4s;
+  }
+  .doors:hover .doors__leaf--left  { transform: rotateY(82deg); }
+  .doors:hover .doors__leaf--right { transform: rotateY(-82deg); }
+  .doors:hover .doors__frame { opacity: 0; filter: brightness(1.45); transition: opacity 1.2s ease .8s, filter .4s ease .4s; }
+  .doors:hover .doors__photo { opacity: 1; transform: none; filter: none; }
+  .doors:focus-visible .doors__leaf {
+    opacity: 0;
+    transition: transform 1.6s var(--doors-ease) .5s, opacity .65s ease 1.4s;
+  }
+  .doors:focus-visible .doors__leaf--left  { transform: rotateY(82deg); }
+  .doors:focus-visible .doors__leaf--right { transform: rotateY(-82deg); }
+  .doors:focus-visible .doors__frame { opacity: 0; filter: brightness(1.45); transition: opacity 1.2s ease .8s, filter .4s ease .4s; }
+  .doors:focus-visible .doors__photo { opacity: 1; transform: none; filter: none; }
+}
+
+/* stone */
+.doors__frame .stone, .doors__frame .grain { display: none; }
+.doors__leaf--left .stone--leaf  { fill: url(#dLeafStone-L); }
+.doors__leaf--right .stone--leaf { fill: url(#dLeafStone-R); }
+.doors__leaf--left .grain  { fill: #000; filter: url(#dGrain-L); }
+.doors__leaf--right .grain { fill: #000; filter: url(#dGrain-R); }
+.doors__frame .grain       { fill: #000; filter: url(#dGrain-F); }
+.doors .seam { fill: none; stroke: #2f3a2b; stroke-width: 1.1; }
+
+/* ithildin: five stacked passes of the same geometry
+   (wide soft aura → bloom → tight halo → silver mid stroke → hairline white core) */
+.doors .ink, .doors .spec--bloom, .doors .spec--core, .doors [class^="txt--"], .doors [class*=" txt--"] { transition: opacity .7s ease; }
+.doors .ink { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.doors .ink--aura  { stroke: #8a6418; stroke-width: 9.5; opacity: calc(.36 * var(--glow)); --fs: #8a6418; --fm: #8a6418; --tw: 4.2; }
+.doors .ink--bloom { stroke: #c9a24d; stroke-width: 6;   opacity: calc(.62 * var(--glow)); --fs: #c9a24d; --fm: #c9a24d; --tw: 2.6; }
+.doors .ink--halo  { stroke: #e3c777; stroke-width: 3.2; opacity: calc(.85 * var(--glow)); --fs: rgba(227, 199, 119, .45); --fm: #e3c777; --tw: 1.2; }
+.doors .ink--mid   { stroke: #f3e2a6; stroke-width: 1.6; opacity: calc(.3 + .7 * var(--glow)); --fs: rgba(243, 226, 166, .16); --fm: #f3e2a6; --tw: .35; }
+.doors .ink--core  { stroke: #fff8e1; stroke-width: .8; opacity: calc(.35 + .65 * var(--glow)); --fs: rgba(255, 248, 225, .12); --fm: #fff8e1; --tw: 0; }
+/* specular glints at branch tips, stars and ray points */
+.doors .spec--bloom { fill: #f7ead0; stroke: #d9b96a; stroke-width: 3.4; opacity: calc(.85 * var(--glow)); }
+.doors .spec--core  { fill: #fffaf0; opacity: calc(.6 + .4 * var(--glow)); }
+/* inscription: same five passes as the line art */
+.doors .inscription, .doors .frieze { font-family: "Tengwar Annatar", serif; font-style: italic; }
+.doors .inscription { font-size: 17px; paint-order: stroke fill; }
+.doors .frieze { font-size: 12.5px; }
+.doors .txt--aura  { fill: #8a6418; stroke: #8a6418; stroke-width: 7;   opacity: calc(.42 * var(--glow)); }
+.doors .txt--bloom { fill: #c9a24d; stroke: #c9a24d; stroke-width: 4.2; opacity: calc(.7 * var(--glow)); }
+.doors .txt--halo  { fill: #e3c777; stroke: #e3c777; stroke-width: 1.8; opacity: calc(.9 * var(--glow)); }
+.doors .txt--mid   { fill: #f3e2a6; stroke: #f3e2a6; stroke-width: .6; opacity: calc(.3 + .7 * var(--glow)); }
+.doors .txt--core  { fill: #fff8e1; opacity: calc(.35 + .65 * var(--glow)); }
+.doors__leaf--left .ink--aura { filter: url(#dAura-L); }
+.doors__leaf--left .ink--bloom, .doors__leaf--left .spec--bloom { filter: url(#dBloom-L); }
+.doors__leaf--left .ink--halo { filter: url(#dHalo-L); }
+.doors__leaf--right .ink--aura { filter: url(#dAura-R); }
+.doors__leaf--right .ink--bloom, .doors__leaf--right .spec--bloom { filter: url(#dBloom-R); }
+.doors__leaf--right .ink--halo { filter: url(#dHalo-R); }
+.doors__frame .ink--aura { filter: url(#dAura-F); }
+.doors__frame .ink--bloom, .doors__frame .spec--bloom { filter: url(#dBloom-F); }
+.doors__frame .ink--halo { filter: url(#dHalo-F); }
+.doors__frame .txt--aura { filter: url(#dAura-F); }
+.doors__frame .txt--bloom { filter: url(#dBloom-F); }
+.doors__frame .txt--halo { filter: url(#dHalo-F); }
+
+
+/* frame on the beige page: darker gold inks (the pale "lit" golds only work on the navy door leaves) */
+.doors__frame .ink--aura  { stroke: #e3c777; --fs: #e3c777; --fm: #e3c777; opacity: calc(.55 * var(--glow)); }
+.doors__frame .ink--bloom { stroke: #d6b65f; --fs: #d6b65f; --fm: #d6b65f; opacity: calc(.6 * var(--glow)); }
+.doors__frame .ink--halo  { stroke: #c9a24d; --fs: rgba(201, 162, 77, .45); --fm: #c9a24d; opacity: calc(.9 * var(--glow)); }
+.doors__frame .ink--mid   { stroke: #a8832f; --fs: rgba(168, 131, 47, .16); --fm: #a8832f; opacity: calc(.45 + .55 * var(--glow)); }
+.doors__frame .ink--core  { stroke: #6f5210; --fs: rgba(111, 82, 16, .12); --fm: #6f5210; opacity: calc(.5 + .5 * var(--glow)); }
+.doors__frame .spec--bloom { fill: #e3c777; stroke: #d6b65f; }
+.doors__frame .spec--core  { fill: #8a6418; }
+.doors__frame .txt--aura  { fill: #e3c777; stroke: #e3c777; opacity: calc(.55 * var(--glow)); }
+.doors__frame .txt--bloom { fill: #d6b65f; stroke: #d6b65f; opacity: calc(.6 * var(--glow)); }
+.doors__frame .txt--halo  { fill: #c9a24d; stroke: #c9a24d; opacity: calc(.75 * var(--glow)); }
+.doors__frame .txt--mid   { fill: #a8832f; stroke: #a8832f; opacity: calc(.45 + .55 * var(--glow)); }
+.doors__frame .txt--core  { fill: #6f5210; opacity: calc(.5 + .5 * var(--glow)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .doors .sweep-band { display: none; }
+  .doors .sweep-base { fill: #9a9a9a; }
+  .doors__leaf, .doors.is-open .doors__leaf { transition: opacity .6s ease; transform: none !important; }
+  .doors__photo { transition: none; }
+}
+@media (max-width: 520px) {
+  .doors { max-width: 380px; }
+  /* smaller blur radii and slightly heavier cores so the fine lines stay crisp at 1x on phones */
+  .doors__leaf--left .ink--aura { filter: url(#dAuraS-L); }
+  .doors__leaf--left .ink--bloom, .doors__leaf--left .spec--bloom { filter: url(#dBloomS-L); }
+  .doors__leaf--left .ink--halo { filter: url(#dHaloS-L); }
+  .doors__leaf--right .ink--aura { filter: url(#dAuraS-R); }
+  .doors__leaf--right .ink--bloom, .doors__leaf--right .spec--bloom { filter: url(#dBloomS-R); }
+  .doors__leaf--right .ink--halo { filter: url(#dHaloS-R); }
+  .doors__frame .ink--aura { filter: url(#dAuraS-F); }
+  .doors__frame .ink--bloom, .doors__frame .spec--bloom { filter: url(#dBloomS-F); }
+  .doors__frame .ink--halo { filter: url(#dHaloS-F); }
+  .doors__frame .txt--aura { filter: url(#dAuraS-F); }
+  .doors__frame .txt--bloom { filter: url(#dBloomS-F); }
+  .doors__frame .txt--halo { filter: url(#dHaloS-F); }
+  .doors .ink--core { stroke-width: 1; }
+  .doors .ink--mid  { stroke-width: 1.9; }
+  .doors .ink--aura { opacity: .3; }
+}
+
 @media (max-width: 860px) {
   .split { grid-template-columns: 1fr; }
-  .photo { max-width: 440px; margin-inline: auto; }
+  .doors { max-width: 440px; margin-inline: auto; }
 }
 
 .facts { margin: 2.2em 0; display: grid; gap: 1.2em; }
-.facts div { display: grid; grid-template-columns: 7.5em 1fr; gap: 1em; padding-top: 1em; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 6.5em 1fr; gap: 1em; padding-top: 1em; border-top: 1px solid var(--line); }
 .facts dt { font-size: .8rem; letter-spacing: .25em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding-top: .35em; }
 .facts dd { margin: 0; }
+.facts__sub { display: inline-block; margin-top: .5em; }
+.nowrap { white-space: nowrap; }
+.facts__place { display: inline-block; margin-bottom: .5em; font-style: italic; }
 @media (max-width: 480px) { .facts div { grid-template-columns: 1fr; gap: .3em; } }
 
 .links { display: grid; gap: .6em; justify-items: start; }
@@ -296,7 +476,7 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 .field { grid-column: 1 / -1; border: 0; padding: 0; margin: 0; min-width: 0; }
 .field--half { grid-column: span 1; }
 @media (max-width: 560px) { .rsvp { grid-template-columns: 1fr; } .field--half { grid-column: 1 / -1; } }
-.field > label, .field legend {
+.field__label, .field > label, .field legend {
   display: block; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 600;
   margin-bottom: .6em; opacity: .9;
 }
@@ -307,7 +487,7 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
   padding: .7em .9em; outline: none; transition: border-color .3s, background .3s;
 }
 .field input:focus, .field textarea:focus { border-color: #fff; background: rgba(255,255,255,.16); }
-.field input::placeholder { color: rgba(255,255,255,.55); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.55); font-style: italic; }
 .choices { display: grid; grid-template-columns: 1fr 1fr; gap: .8em; }
 @media (max-width: 420px) { .choices { grid-template-columns: 1fr; } }
 .choice { position: relative; display: block; cursor: pointer; }
@@ -320,10 +500,38 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 .choice input:checked + span { background: #fff; color: var(--sage-deep); border-color: #fff; }
 .choice input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
 .rsvp [data-if-attending].is-hidden { display: none; }
+.guests { display: grid; gap: .6em; }
+.guests:empty { display: none; }
+.guest { display: flex; gap: .5em; align-items: center; }
+.guest input[type=text] { flex: 1; }
+.guest__remove {
+  flex: 0 0 auto; width: 2.4em; height: 2.4em; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.1); color: #fff;
+  font: inherit; font-size: 1.1em; line-height: 1; cursor: pointer; transition: background .3s;
+}
+.guest__remove:hover { background: rgba(255,255,255,.22); }
+.addguest {
+  margin-top: .7em; padding: 0; border: 0; background: none; color: #fff; cursor: pointer;
+  font: inherit; font-size: .95em; font-style: italic; opacity: .9;
+  border-bottom: 1px solid rgba(255,255,255,.5); transition: opacity .3s;
+}
+.addguest:hover { opacity: 1; }
+.addguest[disabled] { opacity: .4; cursor: default; }
 .rsvp .button { grid-column: 1 / -1; justify-self: center; margin-top: .4em; }
 .rsvp__status { grid-column: 1 / -1; text-align: center; margin: 0; min-height: 1.5em; font-style: italic; }
 .rsvp.is-sent > :not(.rsvp__status) { display: none; }
+.rsvp .hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.rsvp.is-closed { opacity: .6; }
 .rsvp.is-sent .rsvp__status { font-size: 1.3em; padding: 1em 0; }
+/* Hobbit lettering for the form chrome (labels, choices, button); typed text stays in the serif */
+.section--rsvp .field__label, .section--rsvp .field > label, .section--rsvp .field legend {
+  font-family: var(--hobbit); font-weight: 400; text-transform: none;
+  font-size: .95rem; letter-spacing: .06em;
+}
+.section--rsvp .field small { font-family: var(--serif); font-size: .8em; }
+.section--rsvp .choice span { font-family: var(--hobbit); font-size: 1.05rem; letter-spacing: .08em; }
+.section--rsvp .button { font-family: var(--hobbit); font-weight: 400; text-transform: none; font-size: 1rem; letter-spacing: .06em; }
+.rsvp__note { font-family: var(--hobbit); font-style: normal; font-size: .95em; letter-spacing: .04em; }
 
 /* Footer */
 .footer { padding: clamp(80px, 10vw, 140px) 0 clamp(48px, 6vw, 80px); text-align: center; }
@@ -331,3 +539,4 @@ h3 { font-size: 1.45rem; margin-bottom: .5em; font-weight: 500; letter-spacing: 
 .footer__contacts a { border-bottom: 1px solid var(--line); }
 .footer__closing { margin-top: 3em; font-style: italic; }
 .footer__signature { font-family: var(--script); font-size: clamp(2.6rem, 4vw, 3.8rem); line-height: 1.2; margin-top: .2em; color: var(--sage-deep); }
+

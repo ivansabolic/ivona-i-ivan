@@ -3,3 +3,6 @@
 WhatsApp Image *.jpeg
 # Font download staging
 assets/fonts/_dl/
+_lab/
+# RSVP endpoint + token (generated on deploy from GitHub secrets)
+config.js

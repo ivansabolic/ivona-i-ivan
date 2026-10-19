@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write config.js from the repository secret and variable
+        env:
+          RSVP_ENDPOINT: ${{ vars.RSVP_ENDPOINT }}
+          RSVP_TOKEN: ${{ secrets.RSVP_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          cfg = {"endpoint": os.environ.get("RSVP_ENDPOINT", ""), "token": os.environ.get("RSVP_TOKEN", "")}
+          open("config.js", "w").write("window.RSVP_CONFIG = " + json.dumps(cfg) + ";\n")
+          PY
+          test -s config.js
+      - name: Leave out files that must not be published
+        run: rm -rf _lab rsvp DEPLOY.md config.example.js .github
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
